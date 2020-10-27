@@ -6,7 +6,8 @@ const houseSchema = new mongoose.Schema({
   description: {type: String, required:true},
   adress:{type: String, required:true},
   price: {type: Number, required:true},
-  daysOfService: {type: Boolean, required:true}
+  startDate: {type: Date, required:true},
+  endDate: {type: Date, required:true}
 }, 
   {
     timestamps: true

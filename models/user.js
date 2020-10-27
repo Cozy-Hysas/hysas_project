@@ -10,7 +10,7 @@ let userSchema = mongoose.Schema({
         type:String,
         require:true
     },
-    passWord: {
+    password: {
         type:String,
         require:true
     },
