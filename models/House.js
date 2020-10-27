@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const db = require('./index.js')
+const db = require('../database/index.js')
 const houseSchema = new mongoose.Schema({
   title: {type: String, required:true},
   imageUrl: {type: String, required:true},
@@ -13,4 +13,5 @@ const houseSchema = new mongoose.Schema({
   }
 );
 
-const House = db.model('House', houseSchema);
+const House = mongoose.model('House', houseSchema);
+module.exports=House
