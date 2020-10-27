@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import Signup from './Signup.jsx';
+import Signup from './Signup.jsx';
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -94,7 +94,7 @@ class Login extends Component {
             return (
               <center>
                 <div>
-                  <Profile />
+                  
                 </div>
               </center>
             );
