@@ -1,4 +1,18 @@
 import React from "react"
 import ReactDOM from "react-dom"
+import Login from "./components/Login.jsx"
+import HouseRenter from "./components/HouseRenter.jsx"
 
-ReactDOM.render(<h1>hello world</h1>,document.getElementById("root"))
+class App extends React.Component {
+    render() {
+        return (
+            <div>
+                <HouseRenter />
+            {/* <Login/> */}
+            </div>
+        )
+    }
+}
+
+ReactDOM.render(<App /> ,document.getElementById("root"))
+
