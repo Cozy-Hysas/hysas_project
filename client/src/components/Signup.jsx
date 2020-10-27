@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Login from './Login.jsx';
 class Signup extends Component {
     constructor(props) {
         super(props);
@@ -8,7 +9,8 @@ class Signup extends Component {
             email: "",
             password: "",
             phoneNumber:undefined, 
-            address:""
+            address:"",
+            check:""
         }
 
     }
@@ -39,10 +41,15 @@ class Signup extends Component {
                         address:""
                 })
             })
+
+            this.setState({
+                check:"login"
+            })
         
     }
 
     render() {
+        if(this.state.check===""){
         return (
             <div className='sign'>
                 <center>
@@ -55,14 +62,18 @@ class Signup extends Component {
                 <input type="password" placeholder="Enter Password" name="psw" id="psw" required onChange={this.myChangeHandler.bind(this)}></input><br/>
 
               
-                <input type="number" placeholder="Phone Number" name="phone" id="phone" required onChange={this.myChangeHandler.bind(this)}></input><br/><br/>
+                <input type="number" placeholder="Phone Number" name="phone" id="phone" required onChange={this.myChangeHandler.bind(this)}></input><br/>
     
                 <input type="text" placeholder="address" name="address" id="address" required onChange={this.myChangeHandler.bind(this)}></input><br/>
                 <br />
                 <button onClick={this.SignUp.bind(this)}>Sign Up</button>
                 </center>
             </div>
-        );
+        )}else if(this.state.check==="login"){
+            return (
+                <Login />
+            )
+        }
     }
 }
 
