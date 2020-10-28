@@ -50,7 +50,7 @@ class HouseRenter extends React.Component {
                 Image: <input className="input" type="text" name="imageUrl" onChange={this.handleEventOnChange}/><br></br>
                 Description: <textarea className="textarea" name="description" cols="30" rows="10" onChange={this.handleEventOnChange}required></textarea><br></br>
                 Adress: <input className="input" type="text" name="adress" onChange={this.handleEventOnChange} required/><br></br>
-                Price: <input className="input" type="number" name="price" min ='0' max = '100' onChange={this.handleEventOnChange}required/><br></br>
+                Price: <input className="input" type="number" name="price" min ='0' max = '500' onChange={this.handleEventOnChange}required/><br></br>
                 daysOfService:   startDate <input className="input" type='date' name="startDate" onChange={this.handleEventOnChange}required/><br></br>
                                  EndDate <input className="input" type="date" name="endDate" onChange={this.handleEventOnChange}required/><br></br>
                 <button className="btn btn-success" type="submit" >Add my House</button><br></br>
