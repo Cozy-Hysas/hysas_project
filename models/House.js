@@ -7,7 +7,8 @@ const houseSchema = new mongoose.Schema({
   adress:{type: String, required:true},
   price: {type: Number, required:true},
   startDate: {type: Date, required:true},
-  endDate: {type: Date, required:true}
+  endDate: {type: Date, required:true},
+  feedBack: {type: String, required:true}
 }, 
   {
     timestamps: true
