@@ -10,9 +10,10 @@ class App extends React.Component {
             <div>
                 <HouseRenter />
 
-            <Login/>
-            <Signup />
-            {/* <Houses /> */}
+
+                <Login/>
+                <Signup />
+
             </div>
         )
     }
