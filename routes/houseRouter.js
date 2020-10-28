@@ -35,17 +35,17 @@ router.post('/addHouse', (req, res)=>{
         .catch(err => res.status(400).json('Err ' + err))
 })
 
-router.delete('/del', async(req, res) => {
+router.delete('/:id', async(req, res) => {
     const house = req.body.house;
-   await House.deleteOne({ 'house': house })
+   await House.findByIdAndDelete(req.params.id)
         .then(() => res.json('house deleted'))
         .catch(() => res.status(400).json('Error: ' + err))
 })
 
 
-router.put('/UP', async (req, res) => {
+router.put('/:id', async (req, res) => {
     const house2 = req.body.house2;
-    await House.updateOne({'house2': house2})
+    await House.findByIdAndUpdate(req.params.id,req.body)
     .then(() => res.json("house updated"))
     .catch(() => res.status(400).json('Error: ' + err))
     
