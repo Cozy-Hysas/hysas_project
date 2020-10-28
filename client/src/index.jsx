@@ -3,6 +3,7 @@ import ReactDOM from "react-dom"
 import Login from "./components/Login.jsx"
 import HouseRenter from "./components/HouseRenter.jsx"
 import Signup from "./components/Signup.jsx"
+// import Houses from "./components/House.jsx"
 class App extends React.Component {
     render() {
         return (
@@ -11,7 +12,7 @@ class App extends React.Component {
 
             <Login/>
             <Signup />
-
+            {/* <Houses /> */}
             </div>
         )
     }
