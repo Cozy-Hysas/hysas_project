@@ -1,8 +1,9 @@
 import React from 'react';
-//import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-//import 'whatwg-fetch';
+import { MDBInputGroup, MDBInput, MDBDatePicker, MDBSelect, MDBRow, MDBIcon, MDBCardTitle, MDBBtn } from "mdbreact";
 
-class Homepage extends React.Component {
+
+
+class HomePage extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -14,31 +15,41 @@ class Homepage extends React.Component {
     return (
        
         <div>
-            {/* add the footer and the header*/}
             <div>
             <h3>Welcome to Cozy hysas!</h3> 
             </div>
         <div>
-        <div className="input-group choose-house">
-      <select className="custom-select" id="housesA" name="house" onChange={this.handleEventSelect}>
-          <option defaultValue>Choose the adress</option>
-          {this.state.data.map(house => <option key={house._id} value={bike.adress}>{bike.adress}</option>)}
-      </select>
-
-      <div className="input-group choose-house">
-      <select className="custom-select" id="housesP" name="house" onChange={this.handleEventSelect}>
-          <option defaultValue>Choose the house price</option>
-          {this.state.data.map(house => <option key={house._id} value={bike.price}>{bike.price}</option>)}
-      </select>
-        </div>
-        {/* do a onclick function to change the view*/}
-      <button className="btn btn-outline-secondary" >Confirm</button>
+       
   </div>
-      </div>
+  <MDBInputGroup
+        prepend="Search for your House here"
+        inputs={
+          <>
+            <MDBInput noTag type="text" hint="Where are you going?"/>
+            <MDBDatePicker getValue={this.getPickerValue}  hint="Arrival date"/>
+            <MDBDatePicker getValue={this.getPickerValue}  hint="Departure date"/>
+            <MDBSelect options={this.state.options} selected="Choose the size of the house" color="Grey" label=" label" hint="Choose the size" />
+            <MDBCardTitle>Choose your rang of price</MDBCardTitle>
+            <MDBRow className="my-4" center>
+            <MDBIcon className="font-weight-bold indigo-text mr-2 mt-1" icon="minus"/>
+                <MDBRangeInput
+                  min={0}
+                  max={100}
+                  value={50}
+                  formClassName="w-75"
+                />
+            <MDBIcon className="font-weight-bold indigo-text ml-2 mt-1" icon="plus" />
+              </MDBRow>
+              <MDBBtn color="Grey" rounded size="sm" type="submit" className="mr-auto">
+          Search
+        </MDBBtn>
+          </>
+        }
+      />
       </div>
       
     );
   }
 }
 
-export default Homepage;
+export default HomePage;

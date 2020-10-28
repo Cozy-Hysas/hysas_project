@@ -8,7 +8,7 @@ class Signup extends Component {
             name: "",
             email: "",
             password: "",
-            phoneNumber:undefined, 
+            phoneNumber:'', 
             address:"",
             check:""
         }
@@ -31,19 +31,19 @@ class Signup extends Component {
             address:this.state.address
           };
       
-          axios.post(`/users`, { user })
+          axios.post(`/users/signup`, { user })
             .then(()=>{
                 this.setState({
                         name: "",
                         email: "",
                         password: "",
-                        phoneNumber:undefined, 
+                        phoneNumber:'', 
                         address:""
                 })
-            })
-
-            this.setState({
-                check:"login"
+                console.log(user)
+                this.setState({
+                    check:"login"
+                })
             })
         
     }
