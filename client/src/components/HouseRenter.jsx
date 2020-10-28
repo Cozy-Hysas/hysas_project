@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import Map from './GoogleMap.jsx';
 
 class HouseRenter extends React.Component {
     constructor(props) {
@@ -45,16 +46,23 @@ class HouseRenter extends React.Component {
                 <div className="add-house">
                     <h3>Enter information for the House to rent</h3>
             <form onSubmit={this.handleEventOnClick}>
-                Title: <input className="input" type="text" name="title" onChange={this.handleEventOnChange} required/>
-                Image: <input className="input" type="text" name="imageUrl" onChange={this.handleEventOnChange}/>
-                Description: <textarea className="textarea" name="description" cols="30" rows="10" onChange={this.handleEventOnChange}required></textarea>
-                Adress: <input className="input" type="text" name="adress" onChange={this.handleEventOnChange} required/>
-                Price: <input className="input" type="number" name="price" min ='0' max = '100' onChange={this.handleEventOnChange}required/>
-                daysOfService:   startDate <input className="input" type='date' name="startDate" onChange={this.handleEventOnChange}required/>
-                                 EndDate <input className="input" type="date" name="endDate" onChange={this.handleEventOnChange}required/>
-                
-                <button className="btn btn-success" type="submit" >Add my House</button>
+                Title: <input className="input" type="text" name="title" onChange={this.handleEventOnChange} required/><br></br>
+                Image: <input className="input" type="text" name="imageUrl" onChange={this.handleEventOnChange}/><br></br>
+                Description: <textarea className="textarea" name="description" cols="30" rows="10" onChange={this.handleEventOnChange}required></textarea><br></br>
+                Adress: <input className="input" type="text" name="adress" onChange={this.handleEventOnChange} required/><br></br>
+                Price: <input className="input" type="number" name="price" min ='0' max = '100' onChange={this.handleEventOnChange}required/><br></br>
+                daysOfService:   startDate <input className="input" type='date' name="startDate" onChange={this.handleEventOnChange}required/><br></br>
+                                 EndDate <input className="input" type="date" name="endDate" onChange={this.handleEventOnChange}required/><br></br>
+                <button className="btn btn-success" type="submit" >Add my House</button><br></br>
             </form>
+            <div style={{margin: '50px'}} >
+            <Map
+             google={this.props.google}
+             center={{lat: 18.5204, lng: 73.8567}}
+             height='300px'
+             zoom={15}
+             />
+            </div>
             </div>
             </div>
             </div>
