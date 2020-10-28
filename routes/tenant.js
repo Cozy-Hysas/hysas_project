@@ -1,52 +1,65 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/user");
+const Tenant = require('../models/tenant')
 const bcrypt = require('bcryptjs');
-const { registerValidationUsers, loginValidationUsers } = require('./validation');
+const { registerValidationTenant, loginValidationTenant } = require("./validation");
 
 router.get('/', async (req, res) => {
-    await User.find()
+    await Tenant.find()
         .then(data => {
             res.send(data);
         })
 })
 
+router.get('/:id', async (req, res) => {
+    await Tenant.findById(req.params.id)
+        .then(data => {
+            res.json(data);
+
+        })
+})
+
 router.post("/signup", async (req, res) => {
     //Validation register
-    const { error } = registerValidationUsers(req.body)
+    const { error } = registerValidationTenant(req.body)
     if (error) return res.send(error.details[0].message)
     //Cheking email 
-    const emailExists = await User.findOne({ email: req.body.email })
+    const emailExists = await Tenant.findOne({ email: req.body.email })
     if (emailExists) return res.status(400).send('Email already exists')
     //Hash password 
     const salt = await bcrypt.genSalt(10)
     const hashPassword = await bcrypt.hash(req.body.password, salt)
 
-    user = new User({
+    tenant = new Tenant({
         name: req.body.name,
         email: req.body.email,
         password: hashPassword,
         phoneNumber: req.body.phoneNumber,
         address: req.body.address,
-    })
-    user.save().then(() => res.json('new user added'))
+        numeroCart: req.body.numeroCart,
+        cvv2: req.body.cvv2
+        })
+    tenant.save().then(() => res.json('new tenant added'))
         .catch((err) => res.status(400).json(err));
 })
 
+
 router.post('/login', async (req, res) => {
     //Validation login
-    const { error } = loginValidationUsers(req.body)
+    const { error } = loginValidationTenant(req.body)
     if (error) return res.send(error.details[0].message)
     //Cheking email 
-    const user = await User.findOne({ email: req.body.email })
-    if (!user) return res.status(400).send('Email is not found ')
+    const tenant = await Tenant.findOne({ email: req.body.email })
+    if (!tenant) return res.status(400).send('Email is not found ')
     //Hash password 
-    const validPassword = await bcrypt.compare(req.body.password, user.password)
+    const validPassword = await bcrypt.compare(req.body.password, tenant.password)
     if (!validPassword) return res.status(400).send('Invalid password')
     res.json("logged in");
 })
 
-
-
+router.put('/:id', async (req, res) => {
+    await Tenant.findByIdAndUpdate(req.params.id, req.body)
+    res.json("tenant updated");
+})
 
 module.exports = router;
