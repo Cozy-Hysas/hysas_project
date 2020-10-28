@@ -10,9 +10,11 @@ app.use(express.static("client/dist"));
 
 const houseRouter = require("./routes/houseRouter")
 const users = require("./routes/user");
+const tenants = require("./routes/tenant");
 
 app.use("/House", houseRouter);
 app.use("/users",users);
+app.use("/tenant",tenants);
 
 const port = 3000;
 
