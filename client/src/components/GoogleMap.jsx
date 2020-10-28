@@ -75,7 +75,11 @@ class Map extends React.Component{
         * @param addressArray
         * @return {string}
         */
-       getCity  ( addressArray )  {
+
+
+       getCity ( addressArray ) {
+
+
         let city = '';
         for( let i = 0; i < addressArray.length; i++ ) {
          if ( addressArray[ i ].types[0] && 'administrative_area_level_2' === addressArray[ i ].types[0] ) {
@@ -90,7 +94,10 @@ class Map extends React.Component{
         * @param addressArray
         * @return {string}
         */
-       getArea  ( addressArray ) {
+
+       getArea ( addressArray )  {
+
+
         let area = '';
         for( let i = 0; i < addressArray.length; i++ ) {
          if ( addressArray[ i ].types[0]  ) {
@@ -109,7 +116,9 @@ class Map extends React.Component{
         * @param addressArray
         * @return {string}
         */
-       getState ( addressArray ) {
+
+       getState ( addressArray )  {
+
         let state = '';
         for( let i = 0; i < addressArray.length; i++ ) {
          for( let i = 0; i < addressArray.length; i++ ) {
@@ -124,7 +133,11 @@ class Map extends React.Component{
         * And function for city,state and address input
         * @param event
         */
-       onChange ( event ) {
+
+
+       onChange  ( event )  {
+
+
         this.setState({ [event.target.name]: event.target.value });
        };
       /**
@@ -132,7 +145,10 @@ class Map extends React.Component{
         *
         * @param event
         */
-       onInfoWindowClose ( event )  {
+
+
+       onInfoWindowClose  ( event )  {
+
       };
       render(){
       
@@ -187,4 +203,4 @@ class Map extends React.Component{
         return( map )
        }
       }
-      export default Map
+      export default Map;

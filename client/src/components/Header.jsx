@@ -1,54 +1,37 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Fab from '@material-ui/core/Fab';
-import Button from '@material-ui/core/Button';
-import firebase from 'firebase'
+import { Navbar,Nav,NavDropdown,Form,FormControl,Button } from 'react-bootstrap'
 
 export class Header extends React.Component {
 
 
 
-  handleLogout(event){
-    firebase.auth().signOut();
-  }
   render() {
     return (
       <div>
-          {/* redo the header and add css*/}
-        <AppBar className="AppBar" position="static">
-          <Toolbar className="">
-            <Link to="/">
-              <Typography variant="h6" className="AppBar-title">
-              Cozy hysas
-            </Typography>
-            </Link>
-
-            <div className="ml-auto">
-
-              <Link to="/HouseOuner">
-                <Button >House Ouner</Button>
-              </Link>
-
-              {firebase.auth().currentUser == null ?
-                <Link to="/login">
-                  <Fab className="AppBar-Login" variant="extended">
-                    Login
-                  </Fab>
-                </Link>
-
-                :
-                <Fab className="AppBar-Login" variant="extended" onClick={this.handleLogout}>
-                  Logout
-                </Fab>
-              }
-
-            </div>
-
-          </Toolbar>
-        </AppBar>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar.Brand href="#home">
+      <img
+        src="/logo.svg"
+        width="30"
+        height="30"
+        className="d-inline-block align-top"
+      
+      />
+    </Navbar.Brand>      
+  <Navbar.Brand href="#home">Cozy hysas</Navbar.Brand>
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+    <Nav className="mr-auto">
+      <Nav.Link href="#home">Home Page</Nav.Link>
+    </Nav>
+    <Nav>
+      <Nav.Link href="#Becamerenter">Became a renter</Nav.Link>
+      <Nav.Link eventKey={2} href="#login">
+        Create an account
+      </Nav.Link>
+    </Nav>
+  </Navbar.Collapse>
+</Navbar>
       </div>
       
     )
