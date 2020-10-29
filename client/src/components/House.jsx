@@ -67,13 +67,13 @@ onClick() {
             }
                 <br/>
                 startDate{" "}
-                <input className="input" type="date" name="endDate"
+                <input className="input" type="date" name="startDate"
                     onChange={
                         this.handleEventOnChange
                     }/>
                 <br/>
                 endDate{" "}
-                <input className="input" type="date" name="startDate"
+                <input className="input" type="date" name="endDate"
                     onChange={
                         this.handleEventOnChange
                     }/> <br/>
