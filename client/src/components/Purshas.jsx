@@ -23,24 +23,24 @@ class Purshas extends React.Component {
         })
     }
     onClick() {
+        alert('this should take me to home page')
         
-        this.setState({
-            toHomePage:"homepage"
-        })
+        // this.setState({
+        //     toHomePage:"homepage"
+        // })
     }
    
 
 
 
     render() {
+        
         if (this.state.toHomePage === ""){
         return (
             <div>
-            {/* <h1>
-            {this.state.startDate}
-            {this.props.endDate}
-                
-            </h1> */}
+            <h1>start date : {this.props.startDate} end date : {this.props.endDate}</h1>
+            
+            
 			
 			<h1>Your information</h1>
 			Use the following form to complete your reservation.<br/><br/>
@@ -54,7 +54,7 @@ expiry<input type="text"  name="expiry" required="required" maxLength="100" clas
         )}else if(this.state.toHomePage==='homepage'){
             return(
                 <div>
-                    <Homepage />
+                    {/* <Homepage /> */}
                 </div>
             )
         }
