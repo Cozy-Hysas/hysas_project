@@ -8,7 +8,20 @@ const houseSchema = new mongoose.Schema({
   price: {type: Number, required:true},
   startDate: {type: Date, required:true},
   endDate: {type: Date, required:true},
-  feedBack: {type: String, required:true}
+  feedBack: [{
+    text:{
+      type: String, 
+      required:true
+    },
+    created: {
+      type:Date,
+      default:Date.now()
+    },
+    user:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:"User"
+    }
+  }]
 }, 
   {
     timestamps: true
