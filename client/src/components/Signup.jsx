@@ -41,7 +41,6 @@ class Signup extends Component {
                         phoneNumber:undefined, 
                         address:""
                 })
-                console.log(user)
                 this.setState({
                     check:"login"
                 })
@@ -64,7 +63,7 @@ class Signup extends Component {
                 <input type="password" placeholder="Enter Password" name="password" id="psw" required minlength="6" onChange={this.myChangeHandler.bind(this)}></input><br/>
 
               
-                <input type="number" placeholder="Phone Number" name="phoneNumber" id="phone" required minlength="8" onChange={this.myChangeHandler.bind(this)}></input><br/>
+                <input type="number" placeholder="Phone Number" name="phoneNumber" id="phone" required onChange={this.myChangeHandler.bind(this)}></input><br/>
     
                 <input type="text" placeholder="address" name="address" id="address" required minlength="10" onChange={this.myChangeHandler.bind(this)}></input><br/>
                 <br />
