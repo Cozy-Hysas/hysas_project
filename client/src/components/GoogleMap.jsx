@@ -77,7 +77,9 @@ class Map extends React.Component{
         */
 
 
+
        getCity ( addressArray ) {
+
 
 
         let city = '';
@@ -96,6 +98,7 @@ class Map extends React.Component{
         */
 
        getArea ( addressArray )  {
+
 
 
         let area = '';
@@ -119,6 +122,7 @@ class Map extends React.Component{
 
        getState ( addressArray )  {
 
+
         let state = '';
         for( let i = 0; i < addressArray.length; i++ ) {
          for( let i = 0; i < addressArray.length; i++ ) {
@@ -135,7 +139,9 @@ class Map extends React.Component{
         */
 
 
+
        onChange  ( event )  {
+
 
 
         this.setState({ [event.target.name]: event.target.value });
@@ -147,7 +153,9 @@ class Map extends React.Component{
         */
 
 
+
        onInfoWindowClose  ( event )  {
+
 
       };
       render(){

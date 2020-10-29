@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Signup from './Signup.jsx';
-class Login extends Component {
+import SignupTenant from './SignupTenant.jsx';
+class LoginTenant extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data:[],
-            email: '',
-            password: '',
-            check : ''
+            data : [],
+            email : "",
+            password : "",
+            id: 0,
+            check : ""
         }
-        this.check = this.check.bind(this);
-        this.changePassword = this.changePassword.bind(this);
-        this.changeEmail = this.changeEmail.bind(this);
-
     }
     componentDidMount(){
-        axios.get("http://localhost:3000/users")
+        axios.get("http://localhost:3000/tenant")
         .then(res => {
             this.setState({
                 data : res.data,
                 email : "",
                 password : "",
+                id:0,
                 check: ""
             })
         })
@@ -55,7 +53,7 @@ class Login extends Component {
           this.setState({ check: "login" });
         }
       }
-    render() {
+      render() {
         if (this.state.check === "") {
             return (
               <center>
@@ -86,7 +84,7 @@ class Login extends Component {
             return (
               <center>
                 <div>
-                  <Signup />
+                  <SignupTenant />
                 </div>
               </center>
             );
@@ -102,4 +100,4 @@ class Login extends Component {
         }
 }
 
-export default Login;
+export default LoginTenant;
