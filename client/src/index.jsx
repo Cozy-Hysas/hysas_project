@@ -5,7 +5,7 @@ import HouseRenter from "./components/HouseRenter.jsx"
 import Signup from "./components/Signup.jsx"
 
 import SignupTenant from "./components/SignupTenant.jsx"
-
+import LoginTenant from "./components/LoginTenant.jsx"
 
 import HousesList from "./components/HousesList.jsx"
 
@@ -21,21 +21,13 @@ class App extends React.Component {
         return (
             <div>
 
-<SignupTenant/>
 
+        {/* <SignupTenant/> */}
+            {/* <LoginTenant/> */}
+            {/* <Login/> */}
+{/* <Signup/> */}
 
-
-                <Header/>
-                <HomePage/>
-                <HouseRenter />
-                <Login/>
-                <Signup />
-
-
-                <HousesList/>
-
-         <Houses />
-                <Footer />
+           
 
 
 

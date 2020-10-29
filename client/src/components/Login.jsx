@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Signup from './Signup.jsx';
+import House from './House.jsx';
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data:[],
             email: '',
             password: '',
             check : ''
@@ -15,46 +15,21 @@ class Login extends Component {
         this.changeEmail = this.changeEmail.bind(this);
 
     }
-    componentDidMount(){
-        axios.get("http://localhost:3000/users")
-        .then(res => {
-            this.setState({
-                data : res.data,
-                email : "",
-                password : "",
-                check: ""
-            })
-        })
-        .catch(err => console.log(err,'errrrr'));
-    }
+    
     changePassword(event) {
         this.setState({ password: event.target.value})
     }
     changeEmail(event) {
         this.setState({ email: event.target.value})
     }
-    check(event) {
-        event.preventDefault();
-        const listEmail = this.state.data.map((adress) => adress.email);
-        const listPassword = this.state.data.map((pass) => pass.password);
-        if (listEmail.indexOf(this.state.email) === -1) {
-          alert("don't have an account yet please create one");
-          this.setState({ check: "signup" });
-        } else if (
-          listEmail.indexOf(this.state.email) !== -1 &&
-          listPassword[listEmail.indexOf(this.state.email)] !==
-            this.state.password
-        ) {
-          alert("wrong password try again");
-        } else if (
-          listEmail.indexOf(this.state.email) !== -1 &&
-          listPassword[listEmail.indexOf(this.state.email)] ===
-            this.state.password
-        ) {
-          alert("Hello " + this.state.email);
-          this.setState({ check: "login" });
+  
+        check(event) {
+          event.preventDefault();
+          axios.post("http://localhost:3000/users/login",{email: this.state.email,password: this.state.password})
+          .then((res)=> this.setState({check : res.data.message}))
+          .catch((err)=> console.log(err,'errrrr'));
         }
-      }
+
     render() {
         if (this.state.check === "") {
             return (
@@ -90,11 +65,11 @@ class Login extends Component {
                 </div>
               </center>
             );
-          } else if (this.state.check === "login") {
+          } else if (this.state.check === "welcome") {
             return (
               <center>
                 <div>
-                  
+                  <House />
                 </div>
               </center>
             );
@@ -103,3 +78,4 @@ class Login extends Component {
 }
 
 export default Login;
+
