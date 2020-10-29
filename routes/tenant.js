@@ -35,9 +35,7 @@ router.post("/signup", async (req, res) => {
         email: req.body.email,
         password: hashPassword,
         phoneNumber: req.body.phoneNumber,
-        address: req.body.address,
-        numeroCart: req.body.numeroCart,
-        cvv2: req.body.cvv2
+        address: req.body.address
         })
     tenant.save().then(() => res.json('new tenant added'))
         .catch((err) => res.status(400).json(err));
@@ -54,7 +52,8 @@ router.post('/login', async (req, res) => {
     //Hash password 
     const validPassword = await bcrypt.compare(req.body.password, tenant.password)
     if (!validPassword) return res.status(400).send('Invalid password')
-    res.json("logged in");
+    const obj = {"message" : "welcome"}
+    res.json(obj);
 })
 
 router.put('/:id', async (req, res) => {
