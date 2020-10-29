@@ -1,30 +1,21 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import SignupTenant from './SignupTenant.jsx';
+import House from './House.jsx'
 class LoginTenant extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data : [],
             email : "",
             password : "",
-            id: 0,
             check : ""
         }
+        this.changePassword = this.changePassword.bind(this);
+        this.changeEmail = this.changeEmail.bind(this);
+        this.check = this.check.bind(this);
     }
-    componentDidMount(){
-        axios.get("http://localhost:3000/tenant")
-        .then(res => {
-            this.setState({
-                data : res.data,
-                email : "",
-                password : "",
-                id:0,
-                check: ""
-            })
-        })
-        .catch(err => console.log(err,'errrrr'));
-    }
+    
+
     changePassword(event) {
         this.setState({ password: event.target.value})
     }
@@ -33,37 +24,23 @@ class LoginTenant extends Component {
     }
     check(event) {
         event.preventDefault();
-        const listEmail = this.state.data.map((adress) => adress.email);
-        const listPassword = this.state.data.map((pass) => pass.password);
-        if (listEmail.indexOf(this.state.email) === -1) {
-          alert("don't have an account yet please create one");
-          this.setState({ check: "signup" });
-        } else if (
-          listEmail.indexOf(this.state.email) !== -1 &&
-          listPassword[listEmail.indexOf(this.state.email)] !==
-            this.state.password
-        ) {
-          alert("wrong password try again");
-        } else if (
-          listEmail.indexOf(this.state.email) !== -1 &&
-          listPassword[listEmail.indexOf(this.state.email)] ===
-            this.state.password
-        ) {
-          alert("Hello " + this.state.email);
-          this.setState({ check: "login" });
-        }
+        axios.post("http://localhost:3000/tenant/login",{email: this.state.email,password: this.state.password})
+        .then((res)=> this.setState({check : res.data.message}))
+        .catch((err)=> console.log(err,'errrrr'));
       }
       render() {
         if (this.state.check === "") {
             return (
               <center>
                 <div className="login">
+                  <form className="login-form" onSubmit={(event) => this.check(event)}>
                   <div>
                     <input
                       type="email"
                       placeholder="put your email here"
                       value={this.state.email}
                       onChange={this.changeEmail}
+                      required
                     />
                     <br></br>
                     <input
@@ -71,12 +48,12 @@ class LoginTenant extends Component {
                       placeholder="put your password here "
                       value={this.state.password}
                       onChange={this.changePassword}
+                      required
                     />
                     <br></br>
-                    <button id="bb" onClick={(event) => this.check(event)}>
-                      LOGIN
-                    </button>
+                    <input type="submit" value = "LOGIN"/>
                   </div>
+                  </form>
                 </div>
               </center>
             );
@@ -88,11 +65,11 @@ class LoginTenant extends Component {
                 </div>
               </center>
             );
-          } else if (this.state.check === "login") {
+          } else if (this.state.check === "welcome") {
             return (
               <center>
                 <div>
-                  
+                  <House/>
                 </div>
               </center>
             );
