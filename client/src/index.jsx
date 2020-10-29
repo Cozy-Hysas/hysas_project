@@ -12,7 +12,7 @@ import HousesList from "./components/HousesList.jsx"
 import Houses from "./components/House.jsx"
 import Header from "./components/Header.jsx"
 import Footer from "./components/Footer.jsx"
-import HomePage from "./components/HomePage.jsx"
+// import HomePage from "./components/HomePage.jsx"
 
 
 
@@ -26,7 +26,7 @@ class App extends React.Component {
 
 
                 <Header/>
-                <HomePage/>
+                {/* <HomePage/> */}
                 <HouseRenter />
                 <Login/>
                 <Signup />

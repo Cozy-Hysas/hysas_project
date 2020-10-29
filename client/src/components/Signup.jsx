@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Login from './Login.jsx';
+import $ from 'jquery';
 class Signup extends Component {
     constructor(props) {
         super(props);
@@ -8,7 +9,7 @@ class Signup extends Component {
             name: "",
             email: "",
             password: "",
-            phoneNumber:'', 
+            phoneNumber:undefined, 
             address:"",
             check:""
         }
@@ -22,7 +23,8 @@ class Signup extends Component {
         this.setState({ [nam]: val });
     }
 
-    SignUp(){
+    SignUp(e){
+        e.preventDefault();
         const user = {
             name: this.state.name,
             email: this.state.email,
@@ -30,14 +32,13 @@ class Signup extends Component {
             phoneNumber: this.state.phoneNumber, 
             address:this.state.address
           };
-      
           axios.post(`/users/signup`, { user })
             .then(()=>{
                 this.setState({
                         name: "",
                         email: "",
                         password: "",
-                        phoneNumber:'', 
+                        phoneNumber:undefined, 
                         address:""
                 })
                 console.log(user)
@@ -52,22 +53,24 @@ class Signup extends Component {
         if(this.state.check===""){
         return (
             <div className='sign'>
+                <form className="sign-form" onSubmit={this.SignUp.bind(this)}>
                 <center>
                
-                <input type="text" placeholder="Name" name="name" id="name" required onChange={this.myChangeHandler.bind(this)}></input><br/>
+                <input type="text" placeholder="Name" name="name" id="name" required  minlength="6" onChange={this.myChangeHandler.bind(this)}></input><br/>
             
-                <input type="text" placeholder="Enter Email" name="email" id="email" required onChange={this.myChangeHandler.bind(this)}></input><br/>
+                <input type="email" placeholder="Enter Email" name="email" required  id="email" onChange={this.myChangeHandler.bind(this)}></input><br/>
 
              
-                <input type="password" placeholder="Enter Password" name="psw" id="psw" required onChange={this.myChangeHandler.bind(this)}></input><br/>
+                <input type="password" placeholder="Enter Password" name="password" id="psw" required minlength="6" onChange={this.myChangeHandler.bind(this)}></input><br/>
 
               
-                <input type="number" placeholder="Phone Number" name="phone" id="phone" required onChange={this.myChangeHandler.bind(this)}></input><br/>
+                <input type="number" placeholder="Phone Number" name="phoneNumber" id="phone" required minlength="8" onChange={this.myChangeHandler.bind(this)}></input><br/>
     
-                <input type="text" placeholder="address" name="address" id="address" required onChange={this.myChangeHandler.bind(this)}></input><br/>
+                <input type="text" placeholder="address" name="address" id="address" required minlength="10" onChange={this.myChangeHandler.bind(this)}></input><br/>
                 <br />
-                <button onClick={this.SignUp.bind(this)}>Sign Up</button>
+                <button>Sign Up</button>
                 </center>
+                </form>
             </div>
         )}else if(this.state.check==="login"){
             return (
